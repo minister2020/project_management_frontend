@@ -3,7 +3,15 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { React, useState } from "react";
 import Dash from "../../public/assets/Dashboard.svg"
-import Proj from "../../public/assets/Project.svg"
+import Project from "../../public/assets/Project.svg"
+import Comment from "../../public/assets/Comment.svg"
+import Appointment from "../../public/assets/Appointment.svg"
+import Intern from "../../public/assets/Intern.svg"
+import Staff from "../../public/assets/Staff.svg"
+import Search from "../../public/assets/Search.svg"
+import Profile from "../../public/assets/Profile.svg"
+import Edit from "../../public/assets/Edit.svg"
+// import Search from "../../public/assets/Search.svg"
 
 export default function Dashboard() {
 
@@ -26,24 +34,24 @@ export default function Dashboard() {
                     <Image src={Dash} alt="Dashboard"/>
                     <div className="font-semibold text-[2rem] text-white  ">Dashboard</div>
                 </div>
-                <div className="flex  cursor-pointer space-x-4 mt-[3rem] hover:bg-white hover:text-black">
-                    <Image src={Dash} alt="Dashboard"/>
-                    <div className="font-semibold text-[2rem] text-white  ">Project</div>
+                <div className="flex cursor-pointer space-x-4 mt-[3rem] hover:bg-white hover:text-black">
+                    <Image src={Project} alt="Project"/>
+                    <div className="font-semibold text-[2rem] text-white ">Project</div>
                 </div>
-                <div className="flex cursor-pointer space-x-4 mt-[3rem]">
-                    <Image src={Dash} alt="Dashboard"/>
+                <div className="flex cursor-pointer space-x-4 mt-[3rem] hover:bg-white hover:text-black">
+                    <Image src={Comment} alt="Comment"/>
                     <div className="font-semibold text-[2rem] text-white  ">Comment</div>
                 </div>
-                <div className="flex cursor-pointer space-x-4 mt-[3rem]">
-                    <Image src={Dash} alt="Dashboard"/>
+                <div className="flex cursor-pointer space-x-4 mt-[3rem] hover:bg-white hover:text-black">
+                    <Image src={Appointment} alt="Appointment"/>
                     <div className="font-semibold text-[2rem] text-white  ">Appointment</div>
                 </div>
-                <div className="flex cursor-pointer space-x-4 mt-[3rem]">
-                    <Image src={Dash} alt="Dashboard"/>
+                <div className="flex cursor-pointer space-x-4 mt-[3rem] hover:bg-white hover:text-black">
+                    <Image src={Intern} alt="Intern"/>
                     <div className="font-semibold text-[2rem] text-white  ">Intern</div>
                 </div>
-                <div className="flex cursor-pointer space-x-4 mt-[3rem]">
-                    <Image src={Dash} alt="Dashboard"/>
+                <div className="flex cursor-pointer space-x-4 mt-[3rem] hover:bg-white hover:text-black">
+                    <Image src={Staff} alt="Staff"/>
                     <div className="font-semibold text-[2rem] text-white  ">Staff</div>
                 </div>
                 
@@ -53,11 +61,23 @@ export default function Dashboard() {
             {/* <div className="flex flex-row-reverse">I see you</div> */}
             <div class="flex flex-col justify-center items-center h-screen">
                 <h1 className="text-[4rem] tetx-deepblue font-bold ">Project Management System</h1>
-                <div className="grid grid-cols-2">
-                    <div>1</div>
-                    <div>2</div>
-                    <div>3</div>
-                    <div>4</div>
+                <div className="grid grid-cols-2 gap-[14rem] place-content-evenly mt-[10rem] ">
+                    <div className="flex flex-col bg-[#ECF2FF] w-[20rem] h-[19rem] justify-center items-center " >
+                        <Image src={Edit} alt="Edit"/>
+                        <h2 className="text-[1.8rem] font-medium text-[#03122F] mt-[2.5rem] ">Create Project</h2>
+                    </div>
+                    <div className="flex flex-col bg-[#ECF2FF] w-[20rem] h-[19rem] justify-center items-center " >
+                         <Image src={Search} alt="Search"/>
+                         <h2 className="text-[1.8rem] font-medium text-[#03122F] mt-[2.5rem] ">Search</h2>
+                    </div>
+                    <div className="flex flex-col bg-[#ECF2FF] w-[20rem] h-[19rem] justify-center items-center " >
+                        <Image src={Profile} alt="Profile"/>
+                        <h2 className="text-[1.8rem] font-medium text-[#03122F] mt-[2.5rem] ">Edit profile</h2>
+                    </div>
+                    <div className="flex flex-col bg-[#ECF2FF] w-[20rem] h-[19rem] justify-center items-center " >
+                        <Image src={Edit} alt="Logout"/>
+                        <h2 className="text-[1.8rem] font-medium text-[#03122F] mt-[2.5rem] ">Log out</h2>
+                    </div>
                 </div>
             </div>
             
