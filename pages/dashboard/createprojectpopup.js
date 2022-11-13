@@ -1,8 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
-import { React, useState } from "react";
-import { GrClose } from 'react-icons/gr'
-
+import { React } from "react";
+import { GrClose } from "react-icons/gr";
 
 export default function Createprojectpopup() {
   return (
@@ -15,14 +14,16 @@ export default function Createprojectpopup() {
 
       <main className="font-Roboto bg-deepblue flex flex-col justify-center items-center  h-screen  ">
         <div className="flex flex-col bg-white justify-center px-[3rem] pb-[3rem] ">
-            <div className="flex bg-white border border-[#DCE4FF] w-[64rem] mt-[2.2rem] justify-between items-center">
-              <h1 className="text-black font-semibold text-[2.4rem]   pt-[1rem] pb-[1.2rem] pl-[1.9rem] ">
-                Create new project
-              </h1>
-              <div classname="w-[20rem] cursor-pointer  ">
-                <GrClose className="mx-[1.9rem] cursor-pointer "/>
-              </div>
+          <div className="flex bg-white border border-[#DCE4FF] w-[64rem] mt-[2.2rem] justify-between items-center">
+            <h1 className="text-black font-semibold text-[2.4rem]   pt-[1rem] pb-[1.2rem] pl-[1.9rem] ">
+              Create new project
+            </h1>
+            <div classname="w-[20rem] cursor-pointer  ">
+              <Link href="/dashboard/dashboard ">
+                <GrClose className="mx-[1.9rem] cursor-pointer " />
+              </Link>
             </div>
+          </div>
           <form className="text-black ">
             <div className="flex flex-col ">
               <label className=" text-black font-semibold text-[2.4rem] mt-[1.7rem] pl-[1.9rem] ">
@@ -55,7 +56,7 @@ export default function Createprojectpopup() {
               />
             </div>
             <div className="flex mt-[3rem] justify-end ">
-              <Link href="">
+              <Link href="/dashboard/dashboard ">
                 <button className="text-white text-[2rem] font-medium bg-[#292626] px-[1rem] py-[0.5rem] mx-[1rem]">
                   Cancel
                 </button>

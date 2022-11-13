@@ -1,22 +1,25 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
-import { React, useState } from "react";
-import Dash from "../../public/assets/Dashboard.svg"
-import Project from "../../public/assets/Project.svg"
-import Comment from "../../public/assets/Comment.svg"
-import Appointment from "../../public/assets/Appointment.svg"
-import Intern from "../../public/assets/Intern.svg"
-import Staff from "../../public/assets/Staff.svg"
-import Search from "../../public/assets/Search.svg"
-import Profile from "../../public/assets/Profile.svg"
-import Edit from "../../public/assets/Edit.svg"
-// import Search from "../../public/assets/Search.svg"
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
+import { React } from "react";
+import Dash from "../../public/assets/Dashboard.svg";
+import Project from "../../public/assets/Project.svg";
+import Comment from "../../public/assets/Comment.svg";
+import Appointment from "../../public/assets/Appointment.svg";
+import Intern from "../../public/assets/Intern.svg";
+import Intern_Two from "../../public/assets/Intern_Two.svg";
+import Staff from "../../public/assets/Staff.svg";
+import Search from "../../public/assets/Search.svg";
+import Profile from "../../public/assets/Profile.svg";
+import Edit from "../../public/assets/Edit.svg";
+import Arrowdown from "../../public/assets/Arrowdown.svg";
+import Rectangle from "../../public/assets/Rectangle.png";
+import Notification from "../../public/assets/Notification.svg";
+import Logout from "../../public/assets/Logout.svg";
+import Logout_Two from "../../public/assets/Logout_Two.svg";
+
 
 export default function Dashboard() {
-
-
-  
   return (
     <div>
       <Head>
@@ -26,64 +29,123 @@ export default function Dashboard() {
       </Head>
 
       <main className="font-Roboto bg-white w-full flex h-screen  ">
-       
         <div className="w-1/5 bg-deepblue h-screen ">
+          <div className="flex flex-col  text-white ">
+            <div className="flex space-x-4 mt-[4.2rem] px-[4rem] py-[1rem] ">
+              <Image src={Dash} alt="Dashboard" />
+              <div className="font-semibold text-[2rem]  ">Dashboard</div>
+            </div>
+            <Link href="/dashboard/createprojectpopup">
+              <div className="flex  space-x-4 mt-[3rem] px-[4rem] py-[1rem] hover:bg-white hover:text-black">
+                <Image src={Project} alt="Project" />
+                <div className="font-semibold text-[2rem]  ">Project</div>
+              </div>
+            </Link>
+            <Link href="/dashboard/comment">
+              <div className="flex  space-x-4 mt-[3rem] px-[4rem] py-[1rem] hover:bg-white hover:text-black">
+                <Image src={Comment} alt="Comment" />
+                <div className="font-semibold text-[2rem] ">Comment</div>
+              </div>
+            </Link>
+            <Link href="/dashboard/appointment">
+              <div className="flex space-x-4 mt-[3rem] px-[4rem] py-[1rem] hover:bg-white hover:text-black">
+                <Image src={Appointment} alt="Appointment" />
+                <div className="font-semibold text-[2rem]  ">Appointment</div>
+              </div>
+            </Link>
 
-            <div className="flex flex-col">
-                <div className="flex space-x-4 mt-[4.2rem]">
-                    <Image src={Dash} alt="Dashboard"/>
-                    <div className="font-semibold text-[2rem] text-white  ">Dashboard</div>
-                </div>
-                <div className="flex cursor-pointer space-x-4 mt-[3rem] hover:bg-white hover:text-black">
-                    <Image src={Project} alt="Project"/>
-                    <div className="font-semibold text-[2rem] text-white ">Project</div>
-                </div>
-                <div className="flex cursor-pointer space-x-4 mt-[3rem] hover:bg-white hover:text-black">
-                    <Image src={Comment} alt="Comment"/>
-                    <div className="font-semibold text-[2rem] text-white  ">Comment</div>
-                </div>
-                <div className="flex cursor-pointer space-x-4 mt-[3rem] hover:bg-white hover:text-black">
-                    <Image src={Appointment} alt="Appointment"/>
-                    <div className="font-semibold text-[2rem] text-white  ">Appointment</div>
-                </div>
-                <div className="flex cursor-pointer space-x-4 mt-[3rem] hover:bg-white hover:text-black">
-                    <Image src={Intern} alt="Intern"/>
-                    <div className="font-semibold text-[2rem] text-white  ">Intern</div>
-                </div>
-                <div className="flex cursor-pointer space-x-4 mt-[3rem] hover:bg-white hover:text-black">
-                    <Image src={Staff} alt="Staff"/>
-                    <div className="font-semibold text-[2rem] text-white  ">Staff</div>
-                </div>
-                
+            <div className="flex  space-x-4 mt-[3rem] px-[4rem] py-[1rem]">
+              <div className="flex flex-col ">
+                <Image
+                  src={Intern_Two}
+                  alt="Intern_Two"
+                  className="ml-[0.3rem]"
+                />
+                <Image src={Intern} alt="Intern" />
+              </div>
+              <div className="font-semibold text-[2rem] text-white  ">
+                Intern
+              </div>
             </div>
+            <div className="flex  space-x-4 mt-[3rem] px-[4rem] py-[1rem] ">
+              <Image src={Staff} alt="Staff" />
+              <div className="font-semibold text-[2rem] text-white  ">
+                Staff
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="w-4/5 bg-white h-screen ">
-            {/* <div className="flex flex-row-reverse">I see you</div> */}
-            <div class="flex flex-col justify-center items-center h-screen">
-                <h1 className="text-[4rem] tetx-deepblue font-bold ">Project Management System</h1>
-                <div className="grid grid-cols-2 gap-[14rem] place-content-evenly mt-[10rem] ">
-                    <div className="flex flex-col bg-[#ECF2FF] w-[20rem] h-[19rem] justify-center items-center " >
-                        <Image src={Edit} alt="Edit"/>
-                        <h2 className="text-[1.8rem] font-medium text-[#03122F] mt-[2.5rem] ">Create Project</h2>
+        <div className="w-4/5 bg-white">
+        <div className="flex justify-end mt-[0.6rem]">
+                    <div className="flex relative mx-[1.2rem]">
+                        <Image src={Notification} alt="Notification" className="  " />
+                        <span className="absolute top-[1.3rem] right-[0rem] bg-[#F02727] rounded-full w-[1rem] h-[1rem]"></span>
                     </div>
-                    <div className="flex flex-col bg-[#ECF2FF] w-[20rem] h-[19rem] justify-center items-center " >
-                         <Image src={Search} alt="Search"/>
-                         <h2 className="text-[1.8rem] font-medium text-[#03122F] mt-[2.5rem] ">Search</h2>
+                    <Image
+                        src={Rectangle}
+                        alt="Rectangle"
+                        className="w-[5rem] h-[5rem] "
+                    />
+                    <div className="flex flex-col px-[0.8rem] mt-[1.5rem] ">
+                        <p className=" text-[#03122F] text-[1.2rem]  ">
+                        Adedeji Adelanwa
+                        </p>
+                        <p className=" text-[#808080] text-[1.2rem]">Intern</p>
                     </div>
-                    <div className="flex flex-col bg-[#ECF2FF] w-[20rem] h-[19rem] justify-center items-center " >
-                        <Image src={Profile} alt="Profile"/>
-                        <h2 className="text-[1.8rem] font-medium text-[#03122F] mt-[2.5rem] ">Edit profile</h2>
-                    </div>
-                    <div className="flex flex-col bg-[#ECF2FF] w-[20rem] h-[19rem] justify-center items-center " >
-                        <Image src={Edit} alt="Logout"/>
-                        <h2 className="text-[1.8rem] font-medium text-[#03122F] mt-[2.5rem] ">Log out</h2>
-                    </div>
-                </div>
-            </div>
+                    <Image src={Arrowdown} alt="Arrow" />
+        </div>
+        <div class="flex flex-col items-center ">
             
+        <h1 className="text-[4rem] tetx-deepblue font-bold mt-[7rem]">
+            Project Management System
+        </h1>
+        <div className="grid grid-cols-2 gap-[6rem] place-content-evenly mt-[10rem] ">
+            <Link href="/dashboard/createprojectpopup">
+            <div className="flex flex-col bg-[#ECF2FF] w-[20rem] h-[19rem] justify-center items-center ">
+                <Image src={Edit} alt="Edit" />
+                <h2 className="text-[1.8rem] font-medium text-[#03122F] mt-[2.5rem] ">
+                Create Project
+                </h2>
+            </div>
+            </Link>
+            <Link href="">
+            <div className="flex flex-col bg-[#ECF2FF] w-[20rem] h-[19rem] justify-center items-center ">
+                <Image src={Search} alt="Search" />
+
+                <h3 className="text-[1.8rem] font-medium text-[#03122F] mt-[2.5rem] ">
+                Search
+                </h3>
+            </div>
+            </Link>
+            <Link href="/dashboard/editprofile">
+            <div className="flex flex-col bg-[#ECF2FF] w-[20rem] h-[19rem] justify-center items-center ">
+                <Image src={Profile} alt="Profile" />
+
+                <h4 className="text-[1.8rem] font-medium text-[#03122F] mt-[2.5rem] ">
+                Edit profile
+                </h4>
+            </div>
+            </Link>
+            <Link href="/">
+            <div className="flex flex-col bg-[#ECF2FF] w-[20rem] h-[19rem] justify-center items-center ">
+                <div className="flex relative">
+                <Image src={Logout_Two} alt="Logout_Two" />
+                <Image
+                    src={Logout}
+                    alt="Logout"
+                    className="absolute top-[1rem] right-[-1rem] "
+                />
+                </div>
+
+                <h5 className="text-[1.8rem] font-medium text-[#03122F] mt-[2.5rem] ">
+                Log out
+                </h5>
+            </div>
+            </Link>
+        </div>
+        </div>
         </div>
       </main>
-
     </div>
-  )
+  );
 }
