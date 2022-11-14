@@ -18,7 +18,7 @@ export default function Appointment() {
           <div className="flex bg-white justify-center w-[60rem] h-[75vh]">
             <div className="flex flex-col bg-deepblue w-1/4 pt-[3rem] text-center ">
               <Link href="/dashboard/dashboard">
-                <div className="font-semibold text-[2rem] text-white mt-[1rem] cursor-pointer ">
+                <div className="font-semibold text-[2rem] text-white mt-[1rem] cursor-pointer hover:bg-white hover:text-black">
                   Appointment
                 </div>
               </Link>
@@ -90,7 +90,7 @@ export default function Appointment() {
           <div className="flex bg-white justify-center w-[60rem] h-[75vh]">
             <div className="flex flex-col bg-deepblue w-1/4 pt-[3rem] text-center ">
               <Link href="/dashboard/dashboard">
-                <div className="font-semibold text-[2rem] text-white mt-[1rem] cursor-pointer ">
+                <div className="font-semibold text-[2rem] text-white mt-[1rem] cursor-pointer hover:bg-white hover:text-black">
                   Appointment
                 </div>
               </Link>

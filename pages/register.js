@@ -55,13 +55,6 @@ export default function Register() {
             <input
               className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[2.2rem] "
               id="Password"
-              type="email"
-              placeholder="Password"
-              required
-            />
-            <input
-              className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[2.2rem] "
-              id="Password"
               type="Password"
               placeholder="Confirm Password"
               required
@@ -85,27 +78,6 @@ export default function Register() {
                 )}
               </span>
             </div>
-            <div className="flex items-center justify-between w-[45rem] border-2 border-[#EAEFF2] pt-[1rem] pb-[1.2rem] pl-[1.9rem] mt-[2.2rem] ">
-              <input
-                className="text-black text-[1.2rem] bg-[#DCE4FF] w-[45rem] pt-[1rem] pb-[1rem]"
-                id="Password"
-                type={showPasswordTwo ? "text" : "Password"}
-                placeholder="Confirm Password"
-                required
-              />
-              <span
-                onClick={() =>
-                  setShowPasswordTwo((showPasswordTwo) => !showPasswordTwo)
-                }
-                className="w-[3rem]  mr-[1rem] cursor-pointer"
-              >
-                {showPasswordTwo ? (
-                  <Image src={hidden} alt="hidden" />
-                ) : (
-                  <Image src={show} alt="show" />
-                )}
-              </span>
-            </div>
 
             <Link href="/dashboard/dashboard">
               <button className="text-white text-[2rem] font-medium bg-darkblue w-[45rem]  py-[1.4rem] mt-[2.2rem]">
@@ -114,6 +86,12 @@ export default function Register() {
             </Link>
           </form>
         </div>
+        <p className="text-black text-[1.6rem] mt-[3rem]  mt-[0rem]">
+            Already have an account?
+          <span className="  text-[1.8rem] text-[#5790FF]">
+            <Link href="/login"> Log in</Link>
+          </span>
+        </p>
       </main>
     </div>
   );

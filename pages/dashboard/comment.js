@@ -18,7 +18,7 @@ export default function Comment() {
           <div className="flex bg-white justify-center w-[55rem] h-[75vh]">
             <div className="flex flex-col bg-deepblue w-1/4 pt-[3rem] text-center ">
               <Link href="/dashboard/dashboard">
-                <div className="font-semibold text-[2rem] text-white mt-[1rem] ">
+                <div className="font-semibold text-[2rem] text-white mt-[1rem] hover:bg-white hover:text-black">
                   Comments
                 </div>
               </Link>
@@ -55,7 +55,7 @@ export default function Comment() {
           <div className="flex bg-white justify-center w-[55rem] h-[75vh]">
             <div className="flex flex-col bg-deepblue w-1/4 pt-[3rem] text-center ">
               <Link href="/dashboard/dashboard">
-                <div className="font-semibold text-[2rem] text-white mt-[1rem] ">
+                <div className="font-semibold text-[2rem] text-white mt-[1rem] hover:bg-white hover:text-black ">
                   Comments
                 </div>
               </Link>

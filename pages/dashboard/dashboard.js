@@ -6,9 +6,6 @@ import Dash from "../../public/assets/Dashboard.svg";
 import Project from "../../public/assets/Project.svg";
 import Comment from "../../public/assets/Comment.svg";
 import Appointment from "../../public/assets/Appointment.svg";
-import Intern from "../../public/assets/Intern.svg";
-import Intern_Two from "../../public/assets/Intern_Two.svg";
-import Staff from "../../public/assets/Staff.svg";
 import Search from "../../public/assets/Search.svg";
 import Profile from "../../public/assets/Profile.svg";
 import Edit from "../../public/assets/Edit.svg";
@@ -54,7 +51,7 @@ export default function Dashboard() {
               </div>
             </Link>
 
-            <div className="flex  space-x-4 mt-[3rem] px-[4rem] py-[1rem]">
+            {/* <div className="flex  space-x-4 mt-[3rem] px-[4rem] py-[1rem]">
               <div className="flex flex-col ">
                 <Image
                   src={Intern_Two}
@@ -72,31 +69,36 @@ export default function Dashboard() {
               <div className="font-semibold text-[2rem] text-white  ">
                 Staff
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="w-4/5 bg-white">
-        <div className="flex justify-end mt-[0.6rem]">
-                    <div className="flex relative mx-[1.2rem]">
-                        <Image src={Notification} alt="Notification" className="  " />
-                        <span className="absolute top-[1.3rem] right-[0rem] bg-[#F02727] rounded-full w-[1rem] h-[1rem]"></span>
-                    </div>
-                    <Image
-                        src={Rectangle}
-                        alt="Rectangle"
-                        className="w-[5rem] h-[5rem] "
-                    />
-                    <div className="flex flex-col px-[0.8rem] mt-[1.5rem] ">
-                        <p className=" text-[#03122F] text-[1.2rem]  ">
-                        Adedeji Adelanwa
-                        </p>
-                        <p className=" text-[#808080] text-[1.2rem]">Intern</p>
-                    </div>
-                    <Image src={Arrowdown} alt="Arrow" />
+        <div className="flex justify-end mt-[1rem] mx-[3rem] ">
+            <Link href="" >
+                <div className="flex relative mx-[1.2rem]">
+                    <Image src={Notification} alt="Notification" className=" mt-[0.7rem] " />
+                    <span className="absolute top-[1.3rem] right-[0rem] bg-[#F02727] rounded-full w-[1rem] h-[1rem]"></span>
+                </div>
+            </Link>
+            <Image
+                src={Rectangle}
+                alt="Rectangle"
+                className="w-[5rem] h-[5rem] "
+            />
+            <div className="flex flex-col px-[0.8rem] mt-[1.5rem] ">
+                <p className=" text-[#03122F] text-[1.2rem]  ">
+                Adedeji Adelanwa
+                </p>
+                <p className=" text-[#808080] text-[1.2rem]">Intern</p>
+            </div>
+            <Image src={Arrowdown} alt="Arrow" />
+            <Link href="/" className="self-center bg-[#F02727] px-[0.8rem] py-[0.3rem] mx-[1rem]">
+                <h6 className=" text-[1.8rem] font-medium text-white ">Log out</h6>
+            </Link>
         </div>
         <div class="flex flex-col items-center ">
             
-        <h1 className="text-[4rem] tetx-deepblue font-bold mt-[7rem]">
+        <h1 className="text-[4rem] text-deepblue font-bold mt-[7rem]">
             Project Management System
         </h1>
         <div className="grid grid-cols-2 gap-[6rem] place-content-evenly mt-[10rem] ">

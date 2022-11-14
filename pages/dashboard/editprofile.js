@@ -82,6 +82,18 @@ export default function Editprofile() {
                 required
               />
             </div>
+            <div className="flex mt-[3rem] mx-[6rem] justify-end ">
+              <Link href="/dashboard/dashboard ">
+                <button className="text-white text-[2rem] font-medium bg-[#292626] px-[1rem] py-[0.5rem] mx-[1rem]">
+                  Cancel
+                </button>
+              </Link>
+              <Link href="">
+                <button className="text-white text-[2rem] font-medium bg-[#89AFFF] px-[1rem] py-[0.5rem]">
+                  Submit
+                </button>
+              </Link>
+            </div>
           </form>
         </div>
       </main>
