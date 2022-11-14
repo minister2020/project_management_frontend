@@ -99,9 +99,9 @@ export default function Dashboard() {
         <h1 className="text-[4rem] tetx-deepblue font-bold mt-[7rem]">
             Project Management System
         </h1>
-        <div className="grid grid-cols-2 gap-[6rem] place-content-evenly mt-[10rem] ">
+        <div className="grid grid-cols-2 gap-[6rem] place-content-evenly mt-[0.5rem] ">
             <Link href="/dashboard/createprojectpopup">
-            <div className="flex flex-col bg-[#ECF2FF] w-[20rem] h-[19rem] justify-center items-center ">
+            <div className="flex flex-col bg-[#ECF2FF] w-[15rem] h-[15rem] justify-center items-center ">
                 <Image src={Edit} alt="Edit" />
                 <h2 className="text-[1.8rem] font-medium text-[#03122F] mt-[2.5rem] ">
                 Create Project
@@ -109,7 +109,7 @@ export default function Dashboard() {
             </div>
             </Link>
             <Link href="">
-            <div className="flex flex-col bg-[#ECF2FF] w-[20rem] h-[19rem] justify-center items-center ">
+            <div className="flex flex-col bg-[#ECF2FF] w-[15rem] h-[15rem] justify-center items-center ">
                 <Image src={Search} alt="Search" />
 
                 <h3 className="text-[1.8rem] font-medium text-[#03122F] mt-[2.5rem] ">
@@ -118,7 +118,7 @@ export default function Dashboard() {
             </div>
             </Link>
             <Link href="/dashboard/editprofile">
-            <div className="flex flex-col bg-[#ECF2FF] w-[20rem] h-[19rem] justify-center items-center ">
+            <div className="flex flex-col bg-[#ECF2FF] w-[15rem] h-[15rem] justify-center items-center ">
                 <Image src={Profile} alt="Profile" />
 
                 <h4 className="text-[1.8rem] font-medium text-[#03122F] mt-[2.5rem] ">
@@ -127,7 +127,7 @@ export default function Dashboard() {
             </div>
             </Link>
             <Link href="/">
-            <div className="flex flex-col bg-[#ECF2FF] w-[20rem] h-[19rem] justify-center items-center ">
+            <div className="flex flex-col bg-[#ECF2FF] w-[15rem] h-[15rem] justify-center items-center ">
                 <div className="flex relative">
                 <Image src={Logout_Two} alt="Logout_Two" />
                 <Image

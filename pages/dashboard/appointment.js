@@ -40,7 +40,7 @@ export default function Appointment() {
               <form>
                 <div className="flex mt-[4rem]">
                   <label className=" text-[#03122F] self-center font-semibold text-[2rem] w-[12rem] ">
-                    Student ID:
+                    Email:
                   </label>
                   <input
                     className="text-black text-[1.6rem] bg-white border border-[#03122F] w-[30rem] pt-[0.6rem] pb-[0.5rem] pl-[1.5rem]  "

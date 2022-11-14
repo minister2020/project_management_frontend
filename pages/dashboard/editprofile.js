@@ -18,7 +18,7 @@ export default function Editprofile() {
       <main className="font-Roboto bg-deepblue flex flex-col justify-center items-center  h-screen  ">
         <div className="flex flex-col bg-white justify-center px-[3rem] pt-[2rem] pb-[6rem] w-[50rem] ">
           <p className="text-black text-[2rem] font-semibold  ">
-            Edit profile for student
+            Edit profile 
           </p>
           <div className="flex justify-center mt-[1.1rem] relative ">
             <Image
