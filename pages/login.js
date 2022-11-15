@@ -9,8 +9,12 @@ import hidden from "../public/assets/Hiddenpassword.svg";
 import show from "../public/assets/Showpassword.svg";
 
 export default function Login() {
+
+  const LOGIN_BASE_URL = "http://localhost:8082/api/auth/login"
+  
   const [isMarked, setIsmarked] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+ 
 
   function handle() {
     setIsmarked((isMarked) => !isMarked);
@@ -30,13 +34,13 @@ export default function Login() {
             <Image src={Icon} alt="Icon" />
           </div>
 
-          <p className="text-black text-[2rem] font-semibold mt-[5.4rem]">
+          <p className="text-black text-[2rem] font-semibold mt-[rem]">
             Login to Your Account
           </p>
 
           <form className="flex flex-col text-black ">
             <input
-              className="placeholder:text-[1.2rem] placeholder:text-black text-black text-[1.2rem] bg-[#DCE4FF] border-r-2 border-b-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[4rem] "
+              className="placeholder:text-[1.2rem] placeholder:text-black text-black text-[1.2rem] bg-[#DCE4FF] border-r-2 border-b-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[1.5rem] "
               id="Email"
               type="email"
               placeholder="Email"
@@ -80,7 +84,7 @@ export default function Login() {
               </Link>
             </div>
             <Link href="/dashboard/createprojectpopup">
-              <button className="text-white text-[2rem] font-medium bg-darkblue w-[45rem]  py-[1.4rem] mt-[2.2rem]">
+              <button className="text-white text-[2rem] font-medium bg-darkblue w-[45rem]  py-[1.4rem] mt-[2rem]">
                 Log in
               </button>
             </Link>

@@ -4,6 +4,7 @@ import { React, useState } from "react";
 
 export default function Comment() {
   const [track, setTrack] = useState(0);
+  const COMMENT_BASE_URL = "http://localhost:8082/api/auth/addComment"
 
   return (
     <div>

@@ -4,7 +4,7 @@ import { React, useState } from "react";
 
 export default function Appointment() {
   const [track, setTrack] = useState(0);
-
+  const APPOINTMENT_BASE_URL = "http://localhost:8082/api/auth/add"
   return (
     <div>
       <Head>

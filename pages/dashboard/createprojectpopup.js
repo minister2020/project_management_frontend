@@ -113,7 +113,7 @@ export default function Createprojectpopup() {
                             required
                         />
                         </div>
-                        <div className="flex flex-col ">
+                        {/* <div className="flex flex-col ">
                         <label className=" text-black font-semibold text-[2.4rem] mt-[1.7rem] pl-[1.9rem] ">
                             Project manager
                         </label>
@@ -122,7 +122,7 @@ export default function Createprojectpopup() {
                             type="text"
                             required
                         />
-                        </div>
+                        </div> */}
                         <div className="flex mt-[3rem] justify-end ">
                         <Link href="/dashboard/dashboard ">
                             <button className="text-white text-[2rem] font-medium bg-[#292626] px-[1rem] py-[0.5rem] mx-[1rem]">

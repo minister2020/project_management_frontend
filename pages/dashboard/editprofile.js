@@ -7,6 +7,7 @@ import Pen from "../../public/assets/Pen.svg";
 import Book from "../../public/assets/Book.svg";
 
 export default function Editprofile() {
+  const EDIT_PROFILE_BASE_URL = "http://localhost:8082/api/auth/user"
   return (
     <div>
       <Head>

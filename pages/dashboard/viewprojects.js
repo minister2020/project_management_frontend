@@ -3,6 +3,7 @@ import { React } from "react";
 import Link from "next/link";
 
 export default function Viewprojects() {
+  const VIEW_PROJECT_BASE_URL = "http://localhost:8082/api/auth/project"
   return (
     <div>
       <Head>

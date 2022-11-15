@@ -1,13 +1,33 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import hidden from "../public/assets/Hiddenpassword.svg";
 import show from "../public/assets/Showpassword.svg";
 
 export default function Register() {
+
+  const REGISTER_API_BASE_URL = "http://localhost:8082/api/auth/signup"
+
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordTwo, setShowPasswordTwo] = useState(false);
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try{
+        const response = await fetch(REGISTER_API_BASE_URL, {
+          mathod: "POST",
+          header:{
+           "Content-Type": application/JSON,
+          },
+        });
+        const register = await response.json();
+         return register;
+      }catch(error){
+        console.log(error)
+      }
+    };
+  });
 
   return (
     <div>
@@ -17,7 +37,7 @@ export default function Register() {
         <link rel="icon" href="/assets/Project.svg" />
       </Head>
 
-      <main className="font-Roboto bg-white flex flex-col justify-center items-center  h-screen  ">
+      <main className="font-Roboto bg-white flex flex-col justify-center items-center  h-screen 	border-radius: 0.5rem; ">
         <div className="flex flex-col bg-[#DCE4FF] justify-center px-[3rem] pb-[4rem]  drop-shadow-xl ">
           <p className="text-black text-[2rem] font-semibold mt-[2rem]  ">
             Register
@@ -25,41 +45,49 @@ export default function Register() {
 
           <form className="flex flex-col text-black ">
             <input
-              className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[3rem] "
+              className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[0.1rem] "
               id="First-Name"
               type="First-Name"
               placeholder="First Name"
               required
             />
             <input
-              className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[2.2rem] "
+              className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[0.1rem] "
               id="Last-Name"
               type="Last-Name"
               placeholder="Last Name"
               required
             />
             <input
-              className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[2.2rem] "
+              className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[0.1rem] "
               id="Phone"
               type="Phone"
               placeholder="Phone"
               required
             />
+              <input
+              className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[0.1rem] "
+              id="Role"
+              type="role"
+              placeholder="Role"
+              required
+            />
             <input
-              className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[2.2rem] "
+              className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[0.1rem] "
               id="Email"
               type="email"
               placeholder="Email"
               required
             />
             <input
-              className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[2.2rem] "
+              className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[0.1rem] "
               id="Password"
               type="Password"
               placeholder="Confirm Password"
               required
             />
-            <div className="flex items-center justify-between w-[45rem] border-2 border-[#EAEFF2] pt-[1rem] pb-[1.2rem] pl-[1.9rem] mt-[2.2rem] ">
+             
+            <div className="flex items-center justify-between w-[45rem] border-2 border-[#EAEFF2] pt-[1rem] pb-[1.2rem] pl-[1.9rem] mt-[0.1rem] ">
               <input
                 className="text-black text-[1.2rem] bg-[#DCE4FF] w-[45rem] pt-[1rem] pb-[1rem]"
                 id="Password"
@@ -67,6 +95,7 @@ export default function Register() {
                 placeholder="Password"
                 required
               />
+              
               <span
                 onClick={() => setShowPassword((showPassword) => !showPassword)}
                 className="w-[3rem]  mr-[1rem] cursor-pointer"
@@ -77,10 +106,11 @@ export default function Register() {
                   <Image src={show} alt="show" />
                 )}
               </span>
+              
             </div>
 
             <Link href="/dashboard/dashboard">
-              <button className="text-white text-[2rem] font-medium bg-darkblue w-[45rem]  py-[1.4rem] mt-[2.2rem]">
+              <button className="text-white text-[2rem] font-medium bg-darkblue w-[45rem]  py-[1.4rem] mt-[0rem]">
                 Sign up
               </button>
             </Link>

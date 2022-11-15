@@ -3,7 +3,7 @@ import Link from "next/link";
 
 
 const CreateProjects = () => {
-
+    const VIEW_PROJECT_BASE_URL = "http://localhost:8082/api/auth/project"
 
     return (
 
