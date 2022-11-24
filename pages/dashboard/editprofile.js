@@ -61,17 +61,7 @@ export default function Editprofile() {
               </div>
             </div>
 
-            <div className="flex flex-col ">
-              <label className=" text-black font-semibold text-[2rem] mt-[1.5rem]  ">
-                Email
-              </label>
-              <input
-                className="placeholder:text-[1.6rem] placeholder:text-black text-black text-[1.6rem] bg-[#DCE4FF] border border-[#DCE4FF] w-[38rem] pt-[0.6rem] pb-[0.5rem] pl-[1.5rem] mt-[0.5rem] "
-                type="email"
-                placeholder="adedejiadelanwa@gmail.com"
-                required
-              />
-            </div>
+            
             <div className="flex flex-col ">
               <label className=" text-black font-semibold text-[2rem] mt-[1.5rem]  ">
                 Contact

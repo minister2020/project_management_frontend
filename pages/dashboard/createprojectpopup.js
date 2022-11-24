@@ -1,15 +1,63 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import { React, useState } from "react";
+import { React, useState, useRef } from "react";
 import { GrClose } from "react-icons/gr";
 import Dash from "../../public/assets/Dashboard.svg";
 import CreateProjects from "../../components/createdprojects";
 
 
-export default function Createprojectpopup() {
+ function Createprojectpopup() {
+
+    const project_title = useRef();
+    const description = useRef();
+   
+  
 
     const [track, setTrack] = useState(0);
+
+    
+    
+  const getDevices = async (projectToUpload) => {
+    const settings = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(projectToUpload),
+    };
+
+    console.log(JSON.stringify(projectToUpload));
+    try {
+      const fetchResponse = await fetch(
+        "http://localhost:8082/api/users/{user_id}/project",
+        settings
+      );
+      const data = await fetchResponse
+      console.log(fetchResponse)
+      alert("project successly uploaded ");
+    
+      return data;
+    } catch (e) {
+      console.log(e, "error");
+      return e;
+    }
+  };
+
+  const submitProject = (e) => {
+    e.preventDefault();
+    const enteredProject_title = project_title.current.value;
+    const enteredDescription = description.current.value;
+  
+
+    const projectToUpload = {
+      project_title: enteredProject_title,
+      description: enteredDescription
+   
+    };
+
+    getDevices(projectToUpload);
+  };
 
   return (
     <div>
@@ -95,42 +143,37 @@ export default function Createprojectpopup() {
                     <form className="text-black ">
                         <div className="flex flex-col ">
                         <label className=" text-black font-semibold text-[2.4rem] mt-[1.7rem] pl-[1.9rem] ">
-                            Project title
+                            project_title
                         </label>
                         <input
                             className="text-black text-[1.5rem] bg-white border border-[#DCE4FF] w-[64rem] pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[1rem]"
                             type="text"
                             required
+                            ref ={project_title}
                         />
                         </div>
                         <div className="flex flex-col ">
                         <label className=" text-black font-semibold text-[2.4rem] mt-[1.7rem] pl-[1.9rem] ">
-                            Project description
+                             description
                         </label>
                         <input
                             className=" text-black text-[1.5rem] bg-white border border-[#DCE4FF] w-[64rem] h-[14rem] pl-[1.9rem] mt-[1rem] "
                             type="text"
                             required
+                            ref = {description}
                         />
                         </div>
-                        {/* <div className="flex flex-col ">
-                        <label className=" text-black font-semibold text-[2.4rem] mt-[1.7rem] pl-[1.9rem] ">
-                            Project manager
-                        </label>
-                        <input
-                            className="text-black text-[1.5rem] bg-white border border-[#DCE4FF] w-[64rem] pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[1rem]"
-                            type="text"
-                            required
-                        />
-                        </div> */}
+                     
                         <div className="flex mt-[3rem] justify-end ">
                         <Link href="/dashboard/dashboard ">
-                            <button className="text-white text-[2rem] font-medium bg-[#292626] px-[1rem] py-[0.5rem] mx-[1rem]">
+                            <button className="text-white text-[2rem] font-medium bg-[#292626] px-[1rem] py-[0.5rem] mx-[1rem]" 
+                            >
                             Cancel
                             </button>
                         </Link>
                         <Link href="">
-                            <button className="text-white text-[2rem] font-medium bg-[#89AFFF] px-[1rem] py-[0.5rem]">
+                            <button className="text-white text-[2rem] font-medium bg-[#89AFFF] px-[1rem] py-[0.5rem]"
+                            onClick={submitProject}>
                             Create
                             </button>
                         </Link>
@@ -147,3 +190,4 @@ export default function Createprojectpopup() {
     </div>
   );
 }
+export default Createprojectpopup

@@ -1,33 +1,71 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { React, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import React from "react";
+import { useEffect, useState, useRef } from "react";
 import hidden from "../public/assets/Hiddenpassword.svg";
 import show from "../public/assets/Showpassword.svg";
 
-export default function Register() {
-
-  const REGISTER_API_BASE_URL = "http://localhost:8082/api/auth/signup"
+function Register() {
+  const firstNameRef = useRef();
+  const lastNameRef = useRef();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const phoneRef = useRef();
+  const roleRef = useRef();
+  const router = useRouter()
+  
 
   const [showPassword, setShowPassword] = useState(false);
+
   const [showPasswordTwo, setShowPasswordTwo] = useState(false);
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try{
-        const response = await fetch(REGISTER_API_BASE_URL, {
-          mathod: "POST",
-          header:{
-           "Content-Type": application/JSON,
-          },
-        });
-        const register = await response.json();
-         return register;
-      }catch(error){
-        console.log(error)
-      }
+
+  const getDevices = async (dataToCollect) => {
+    const settings = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataToCollect),
     };
-  });
+
+    console.log(JSON.stringify(dataToCollect));
+    try {
+      const fetchResponse = await fetch(
+        "http://localhost:8082/api/auth/signup",
+        settings
+      );
+      const data = await fetchResponse;
+      alert("user registration was successful");
+      router.push("/login")
+      return data;
+    } catch (e) {
+      console.log(e, "error");
+      return e;
+    }
+  };
+
+  const submitData = (e) => {
+    e.preventDefault();
+    const enteredFirstName = firstNameRef.current.value;
+    const enteredLastName = lastNameRef.current.value;
+    const enteredEmail = emailRef.current.value;
+    const enteredPassword = passwordRef.current.value;
+    const enteredPhone = phoneRef.current.value;
+    const enteredRole = roleRef.current.value;
+
+    const dataToCollect = {
+      firstName: enteredFirstName,
+      lastName: enteredLastName,
+      email: enteredEmail,
+      password: enteredPassword,
+      phone: enteredPhone,
+      role: enteredRole,
+    };
+
+    getDevices(dataToCollect);
+  };
 
   return (
     <div>
@@ -50,6 +88,7 @@ export default function Register() {
               type="First-Name"
               placeholder="First Name"
               required
+              ref={firstNameRef}
             />
             <input
               className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[0.1rem] "
@@ -57,6 +96,7 @@ export default function Register() {
               type="Last-Name"
               placeholder="Last Name"
               required
+              ref={lastNameRef}
             />
             <input
               className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[0.1rem] "
@@ -64,13 +104,15 @@ export default function Register() {
               type="Phone"
               placeholder="Phone"
               required
+              ref={phoneRef}
             />
-              <input
+            <input
               className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[0.1rem] "
               id="Role"
               type="role"
               placeholder="Role"
               required
+              ref={roleRef}
             />
             <input
               className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[0.1rem] "
@@ -78,15 +120,9 @@ export default function Register() {
               type="email"
               placeholder="Email"
               required
+              ref={emailRef}
             />
-            <input
-              className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[0.1rem] "
-              id="Password"
-              type="Password"
-              placeholder="Confirm Password"
-              required
-            />
-             
+
             <div className="flex items-center justify-between w-[45rem] border-2 border-[#EAEFF2] pt-[1rem] pb-[1.2rem] pl-[1.9rem] mt-[0.1rem] ">
               <input
                 className="text-black text-[1.2rem] bg-[#DCE4FF] w-[45rem] pt-[1rem] pb-[1rem]"
@@ -94,8 +130,9 @@ export default function Register() {
                 type={showPassword ? "text" : "Password"}
                 placeholder="Password"
                 required
+                ref={passwordRef}
               />
-              
+
               <span
                 onClick={() => setShowPassword((showPassword) => !showPassword)}
                 className="w-[3rem]  mr-[1rem] cursor-pointer"
@@ -106,23 +143,27 @@ export default function Register() {
                   <Image src={show} alt="show" />
                 )}
               </span>
-              
             </div>
 
-            <Link href="/dashboard/dashboard">
-              <button className="text-white text-[2rem] font-medium bg-darkblue w-[45rem]  py-[1.4rem] mt-[0rem]">
-                Sign up
-              </button>
-            </Link>
+            {/* <Link href="/dashboard/dashboard"> */}
+            <button
+              className="text-white text-[2rem] font-medium bg-darkblue w-[45rem]  py-[1.4rem] mt-[0rem]"
+              onClick={submitData}
+            >
+              Sign up
+            </button>
+            {/* </Link> */}
           </form>
         </div>
         <p className="text-black text-[1.6rem] mt-[3rem]  mt-[0rem]">
-            Already have an account?
+          Already have an account?
           <span className="  text-[1.8rem] text-[#5790FF]">
-            <Link href="/login"> Log in</Link>
+          <Link href="/login"> Log in</Link>
           </span>
         </p>
       </main>
     </div>
   );
 }
+
+export default Register;
