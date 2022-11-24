@@ -6,6 +6,8 @@ import React from "react";
 import { useEffect, useState, useRef } from "react";
 import hidden from "../public/assets/Hiddenpassword.svg";
 import show from "../public/assets/Showpassword.svg";
+import {useForm} from "react-hook-form"
+
 
 function Register() {
   const firstNameRef = useRef();
@@ -20,6 +22,17 @@ function Register() {
   const [showPassword, setShowPassword] = useState(false);
 
   const [showPasswordTwo, setShowPasswordTwo] = useState(false);
+  const { register, handleSubmit, watch, formState: {errors}}= useForm({
+    defaultValues: {
+      firstName : "",
+      lastName: "",
+      email: "",
+      password: "",
+      phone: "",
+      role: ""
+      
+    }
+  })
 
   const getDevices = async (dataToCollect) => {
     const settings = {
@@ -27,6 +40,7 @@ function Register() {
       headers: {
         "Content-Type": "application/json",
       },
+    
       body: JSON.stringify(dataToCollect),
     };
 
@@ -81,46 +95,69 @@ function Register() {
             Register
           </p>
 
-          <form className="flex flex-col text-black ">
+          <form className="flex flex-col text-black " onSubmit={handleSubmit((data)=>console.log(data))}>
             <input
               className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[0.1rem] "
-              id="First-Name"
-              type="First-Name"
+              id="firstName"
+              // type="First-Name"
+              name="firstName"
               placeholder="First Name"
+              {...register("firstName",{required: "First Name is required"})}
               required
-              ref={firstNameRef}
+                ref={firstNameRef}
             />
             <input
               className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[0.1rem] "
-              id="Last-Name"
-              type="Last-Name"
+              id="lastName"
+              // type="Last-Name"
+              name="lastName"
               placeholder="Last Name"
-              required
-              ref={lastNameRef}
+              {...register("lastName", {required: "last Name is required"})}
+
+               required
+                ref={lastNameRef}
             />
             <input
               className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[0.1rem] "
               id="Phone"
-              type="Phone"
+              // type="Phone"
+              name="phone"
               placeholder="Phone"
-              required
-              ref={phoneRef}
+              {...register("phone", {required: "phone is required"})}
+               required
+                ref={phoneRef}
             />
             <input
               className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[0.1rem] "
               id="Role"
-              type="role"
+              // type="role"
+              name="role"
               placeholder="Role"
+              {...register("role", {required: " role is required"})}
               required
-              ref={roleRef}
+                ref={roleRef}
             />
+
+
+          
+          {/* <select name="role" 
+            ref={({
+              required: "select one option"
+            })}>
+            <option value=""></option>
+            <option value="5">INTERN </option>
+            <option value="6">STAFF</option>
+       
+          </select> */}
+            
             <input
               className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[0.1rem] "
               id="Email"
-              type="email"
+              name="email"
               placeholder="Email"
-              required
-              ref={emailRef}
+              {...register("email", {required: "email is required"})}
+               required
+               ref={emailRef}
             />
 
             <div className="flex items-center justify-between w-[45rem] border-2 border-[#EAEFF2] pt-[1rem] pb-[1.2rem] pl-[1.9rem] mt-[0.1rem] ">
@@ -128,14 +165,17 @@ function Register() {
                 className="text-black text-[1.2rem] bg-[#DCE4FF] w-[45rem] pt-[1rem] pb-[1rem]"
                 id="Password"
                 type={showPassword ? "text" : "Password"}
+                name="password"
                 placeholder="Password"
-                required
-                ref={passwordRef}
+                {...register("password", {required: "password is required"})}
+           
+                 required
+                 ref={passwordRef}
               />
 
               <span
                 onClick={() => setShowPassword((showPassword) => !showPassword)}
-                className="w-[3rem]  mr-[1rem] cursor-pointer"
+                className="w-[3rem]  umr-[1rem] cursor-pointer"
               >
                 {showPassword ? (
                   <Image src={hidden} alt="hidden" />

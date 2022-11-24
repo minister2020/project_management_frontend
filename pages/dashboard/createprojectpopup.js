@@ -5,6 +5,7 @@ import { React, useState, useRef } from "react";
 import { GrClose } from "react-icons/gr";
 import Dash from "../../public/assets/Dashboard.svg";
 import CreateProjects from "../../components/createdprojects";
+import axios from "axios";
 
 
  function Createprojectpopup() {
@@ -12,47 +13,44 @@ import CreateProjects from "../../components/createdprojects";
     const project_title = useRef();
     const description = useRef();
    
-  
-
     const [track, setTrack] = useState(0);
 
     
     
   const getDevices = async (projectToUpload) => {
-    const settings = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(projectToUpload),
-    };
-
-    console.log(JSON.stringify(projectToUpload));
+   
     try {
-      const fetchResponse = await fetch(
-        "http://localhost:8082/api/users/{user_id}/project",
-        settings
-      );
-      const data = await fetchResponse
-      console.log(fetchResponse)
-      alert("project successly uploaded ");
-    
+
+      console.log("Bearer: "+localStorage.getItem("userToken"), "uuu")
+      const {data} = await axios.post("http://localhost:8082/api/users/project",projectToUpload,{
+        headers: {
+          "Content-Type":"application/json",
+          "Authorization":"Bearer "+localStorage.getItem("userToken")
+        }
+      })
+     
+  
+      console.log("value of PROJ", data);
+     
+      
+ console.log(data)
       return data;
     } catch (e) {
       console.log(e, "error");
       return e;
     }
+  
   };
 
   const submitProject = (e) => {
     e.preventDefault();
     const enteredProject_title = project_title.current.value;
     const enteredDescription = description.current.value;
-  
-
+ 
     const projectToUpload = {
       project_title: enteredProject_title,
-      description: enteredDescription
+      description: enteredDescription,
+     
    
     };
 

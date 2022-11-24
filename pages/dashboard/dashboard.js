@@ -50,26 +50,6 @@ export default function Dashboard() {
                 <div className="font-semibold text-[2rem]  ">Appointment</div>
               </div>
             </Link>
-
-            {/* <div className="flex  space-x-4 mt-[3rem] px-[4rem] py-[1rem]">
-              <div className="flex flex-col ">
-                <Image
-                  src={Intern_Two}
-                  alt="Intern_Two"
-                  className="ml-[0.3rem]"
-                />
-                <Image src={Intern} alt="Intern" />
-              </div>
-              <div className="font-semibold text-[2rem] text-white  ">
-                Intern
-              </div>
-            </div>
-            <div className="flex  space-x-4 mt-[3rem] px-[4rem] py-[1rem] ">
-              <Image src={Staff} alt="Staff" />
-              <div className="font-semibold text-[2rem] text-white  ">
-                Staff
-              </div>
-            </div> */}
           </div>
         </div>
         <div className="w-4/5 bg-white">
@@ -96,7 +76,7 @@ export default function Dashboard() {
                 <h6 className=" text-[1.8rem] font-medium text-white ">Log out</h6>
             </Link>
         </div>
-        <div class="flex flex-col items-center ">
+        <div className="flex flex-col items-center ">
             
         <h1 className="text-[4rem] text-deepblue font-bold mt-[7rem]">
             Project Management System

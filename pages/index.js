@@ -1,19 +1,20 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import Project from "../public/assets/Project.svg";
 import Projectmanagement from "../public/assets/projectmanagement.jpg";
 
 
 
-export default function Home() {
+ function Home() {
   const [isMarked, setIsmarked] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   function handle() {
     setIsmarked((isMarked) => !isMarked);
   }
+ 
 
   return (
     <div>
@@ -45,3 +46,4 @@ export default function Home() {
     </div>
   );
 }
+export default Home
