@@ -7,9 +7,52 @@ import { useEffect, useState, useRef } from "react";
 import hidden from "../public/assets/Hiddenpassword.svg";
 import show from "../public/assets/Showpassword.svg";
 import {useForm} from "react-hook-form"
+import { useFormik } from 'formik';
 
+const initialValues = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  phone: '',
+  role: ''
+}
+const onSubmit = values => {
+  console.log("form data", values)
+ }
+ const validate =values => {
+  let errors = {}
 
+  if(!values.firstName){
+    errors.firstName = 'Required'
+  }
+  if(!values.lastName){
+    errors.lastName = 'Required'
+  }
+  if(!values.phone){
+    errors.phone = 'Required'
+  }
+  if(!values.email){
+    errors.email = 'Required'
+  }
+  if(!values.password){
+    errors.password = 'Required'
+  } 
+  if(!values.role){
+    errors.role = 'required'
+  }
+    return errors
+}
 function Register() {
+
+  const formik = useFormik({
+    initialValues, 
+    onSubmit:values => {
+      submitData(values)
+    } ,
+    validate 
+  });
+  console.log("form errors", formik.errors)
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const emailRef = useRef();
@@ -22,17 +65,7 @@ function Register() {
   const [showPassword, setShowPassword] = useState(false);
 
   const [showPasswordTwo, setShowPasswordTwo] = useState(false);
-  const { register, handleSubmit, watch, formState: {errors}}= useForm({
-    defaultValues: {
-      firstName : "",
-      lastName: "",
-      email: "",
-      password: "",
-      phone: "",
-      role: ""
-      
-    }
-  })
+  
 
   const getDevices = async (dataToCollect) => {
     const settings = {
@@ -60,14 +93,15 @@ function Register() {
     }
   };
 
-  const submitData = (e) => {
-    e.preventDefault();
-    const enteredFirstName = firstNameRef.current.value;
-    const enteredLastName = lastNameRef.current.value;
-    const enteredEmail = emailRef.current.value;
-    const enteredPassword = passwordRef.current.value;
-    const enteredPhone = phoneRef.current.value;
-    const enteredRole = roleRef.current.value;
+  const submitData = (value) => {
+    // e.preventDefault();
+    
+    const enteredFirstName = value.firstName;
+    const enteredLastName = value.lastName
+    const enteredEmail = value.email;
+    const enteredPassword = value.password;
+    const enteredPhone = value.phone;
+    const enteredRole =value.role
 
     const dataToCollect = {
       firstName: enteredFirstName,
@@ -95,49 +129,51 @@ function Register() {
             Register
           </p>
 
-          <form className="flex flex-col text-black " onSubmit={handleSubmit((data)=>console.log(data))}>
+          <form className="flex flex-col text-black " onSubmit={formik.handleSubmit}>
             <input
               className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[0.1rem] "
               id="firstName"
-              // type="First-Name"
+              type="firstName"
               name="firstName"
               placeholder="First Name"
-              {...register("firstName",{required: "First Name is required"})}
-              required
-                ref={firstNameRef}
+              onChange={formik.handleChange}
+              value={formik.values.firstName}
+              ref={firstNameRef}
             />
+             {formik.errors.firstName ? <div>{formik.errors.firstName}</div> : null}
             <input
               className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[0.1rem] "
               id="lastName"
-              // type="Last-Name"
+              type="lastName"
               name="lastName"
               placeholder="Last Name"
-              {...register("lastName", {required: "last Name is required"})}
-
-               required
-                ref={lastNameRef}
+              onChange={formik.handleChange}
+              value={formik.values.lastName}
+              ref={lastNameRef}
             />
+             {formik.errors.lastName ? <div>{formik.errors.lastName}</div> : null}
             <input
               className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[0.1rem] "
-              id="Phone"
-              // type="Phone"
+              id="phone"
+              type="Phone"
               name="phone"
               placeholder="Phone"
-              {...register("phone", {required: "phone is required"})}
-               required
-                ref={phoneRef}
+              onChange={formik.handleChange}
+              value={formik.values.phone}
+              ref={phoneRef}
             />
+             {formik.errors.phone ? <div>{formik.errors.phone}</div> : null}
             <input
               className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[0.1rem] "
-              id="Role"
-              // type="role"
+              id="role"
+              type="role"
               name="role"
               placeholder="Role"
-              {...register("role", {required: " role is required"})}
-              required
-                ref={roleRef}
+              onChange={formik.handleChange}
+              value={formik.values.role}
+              ref={roleRef}
             />
-
+              {formik.errors.role ? <div>{formik.errors.role}</div> : null}
 
           
           {/* <select name="role" 
@@ -152,26 +188,27 @@ function Register() {
             
             <input
               className="text-black text-[1.2rem] bg-[#DCE4FF] border-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[0.1rem] "
-              id="Email"
+              id="email"
               name="email"
               placeholder="Email"
-              {...register("email", {required: "email is required"})}
-               required
-               ref={emailRef}
+              onChange={formik.handleChange}
+              value={formik.values.email}
+              ref={emailRef}
             />
+             {formik.errors.email ? <div>{formik.errors.email}</div> : null}
 
             <div className="flex items-center justify-between w-[45rem] border-2 border-[#EAEFF2] pt-[1rem] pb-[1.2rem] pl-[1.9rem] mt-[0.1rem] ">
               <input
                 className="text-black text-[1.2rem] bg-[#DCE4FF] w-[45rem] pt-[1rem] pb-[1rem]"
-                id="Password"
+                id="password"
                 type={showPassword ? "text" : "Password"}
                 name="password"
                 placeholder="Password"
-                {...register("password", {required: "password is required"})}
-           
-                 required
-                 ref={passwordRef}
+                onChange={formik.handleChange}
+              value={formik.values.password}
+                ref={passwordRef}
               />
+               {formik.errors.password ? <div>{formik.errors.password}</div> : null}
 
               <span
                 onClick={() => setShowPassword((showPassword) => !showPassword)}
@@ -188,7 +225,8 @@ function Register() {
             {/* <Link href="/dashboard/dashboard"> */}
             <button
               className="text-white text-[2rem] font-medium bg-darkblue w-[45rem]  py-[1.4rem] mt-[0rem]"
-              onClick={submitData}
+              // onClick={submitData} 
+              type="submit"
             >
               Sign up
             </button>

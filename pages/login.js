@@ -2,15 +2,44 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { React, useState, useRef , useEffect} from "react";
+import { React, useState, useRef,} from "react";
 import Icon from "../public/assets/Icon.svg";
 import Mark from "../public/assets/Mark.svg";
 import Unmark from "../public/assets/unmark.svg";
 import hidden from "../public/assets/Hiddenpassword.svg";
 import show from "../public/assets/Showpassword.svg";
+import { useFormik } from 'formik';
 import axios from "axios";
 
+const initialValues = {
+  email: '',
+  password: ''
+}
+const onSubmit = values => {
+  console.log("form data", values)
+ }
+ const validate =values => {
+  let errors = {}
+  if(!values.email){
+    errors.email = 'Required'
+  }
+  if(!values.password){
+    errors.password = 'Required'
+  } 
+    return errors
+}
+
 function Login() {
+
+  const formik = useFormik({
+    initialValues, 
+    onSubmit:values => {
+      submitLogin(values)
+    } ,
+    validate 
+  });
+
+  console.log("form errors", formik.errors)
   const email = useRef();
   const password = useRef();
   const router = useRouter();
@@ -19,19 +48,17 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [userToken, setUserToken] = useState([])
 
-useEffect(() => {
-  // localStorage.setItem('userToken', `${JSON.stringify(userToken)}`);
-}, [userToken]);
 
 
-  //setting token globally
-  // localStorage.setItem("userToken", login);
+ 
 
   function handle() {
     setIsmarked((isMarked) => !isMarked);
   }
 
   const login = async (dataToLog) => {
+
+   
     const settings = {
       method: "POST",
       headers: {
@@ -57,10 +84,13 @@ useEffect(() => {
     }
   };
 
-  const submitLogin = (e) => {
-    e.preventDefault();
-    const enteredEmail = email.current.value;
-    const enteredPassword = password.current.value;
+  const submitLogin = (values) => {
+    // e.preventDefault();
+    // const enteredEmail = email.current.value;
+    // const enteredPassword = password.current.value;
+
+    const enteredEmail = values.email;
+    const enteredPassword = values.password;
 
     const dataToLog = {
       email: enteredEmail,
@@ -88,24 +118,36 @@ useEffect(() => {
             Login to Your Account
           </p>
 
-          <form className="flex flex-col text-black ">
+          <form className="flex flex-col text-black " onSubmit={formik.handleSubmit}> 
+           <div>
             <input
               className="placeholder:text-[1.2rem] placeholder:text-black text-black text-[1.2rem] bg-[#DCE4FF] border-r-2 border-b-2 border-[#EAEFF2] w-[45rem]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] mt-[1.5rem] "
-              id="Email"
+              id="email"
+              name="email"
               type="email"
               placeholder="Email"
-              required
+             
+              onChange={formik.handleChange}
+              value={formik.values.email}
               ref={email}
             />
+            {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+            </div>
             <div className="flex items-center justify-between border-r-2 border-b-2 border-[#EAEFF2] w-[45rem] mt-[2.2rem] ">
+            <div>
               <input
                 className="placeholder:text-[1.2rem] placeholder:text-black text-black text-[1.2rem] bg-[#DCE4FF]  border-b-1 border-[#EAEFF2]  pt-[1.4rem] pb-[2.2rem] pl-[1.9rem] w-[45rem]"
-                id="Password"
+                id="password"
+                name="password"
                 type={showPassword ? "text" : "Password"}
                 placeholder="Password"
-                required
+                
+                onChange={formik.handleChange}
+                value={formik.values.password}
                 ref={password}
               />
+              {formik.errors.password ? <div>{formik.errors.password}</div> : null}
+              </div>
               <span
                 onClick={() => setShowPassword((showPassword) => !showPassword)}
                 className="w-[3rem]  mr-[1rem] cursor-pointer"
@@ -135,14 +177,14 @@ useEffect(() => {
                 </h2>
               </Link>
             </div>
-            <Link href="/dashboard/createprojectpopup">
+            <Link href="/dashboard">  </Link>
               <button
                 className="text-white text-[2rem] font-medium bg-darkblue w-[45rem]  py-[1.4rem] mt-[2rem]"
-                onClick={submitLogin}
+                type="submit"
               >
                 Log in
               </button>
-            </Link>
+          
           </form>
         </div>
         <p className="text-black text-[1.6rem] mt-[2rem]  mt-[0rem]">
