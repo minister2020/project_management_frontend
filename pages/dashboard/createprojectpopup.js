@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import { React, useState, useRef } from "react";
+import { React, useState, useRef, useEffect } from "react";
 import { GrClose } from "react-icons/gr";
 import Dash from "../../public/assets/Dashboard.svg";
 import CreateProjects from "../../components/createdprojects";
@@ -21,7 +21,7 @@ import axios from "axios";
    
     try {
 
-      console.log("Bearer: "+localStorage.getItem("userToken"), "uuu")
+      console.log("Bearer: "+localStorage.getItem("userToken"), )
       const {data} = await axios.post("http://localhost:8082/api/users/project",projectToUpload,{
         headers: {
           "Content-Type":"application/json",
@@ -29,13 +29,15 @@ import axios from "axios";
         }
       })
      
+      alert("Project uploaded successfully");
   
       console.log("value of PROJ", data);
      
       
- console.log(data)
+      console.log(data)
       return data;
-    } catch (e) {
+    } 
+    catch (e) {
       console.log(e, "error");
       return e;
     }
@@ -56,6 +58,27 @@ import axios from "axios";
 
     getDevices(projectToUpload);
   };
+
+      const [project, setProject] = useState([])
+   
+   
+  
+   useEffect(() =>{
+     axios.get("http://localhost:8082/api/project")
+     
+       .then(res =>{
+         console.log("this is the project", res)
+      
+         setProject(res.data)
+       
+        
+       
+       })
+       .catch(err =>{
+         console.log(err)
+       })
+   },[])
+
 
   return (
     <div>
@@ -92,12 +115,15 @@ import axios from "axios";
                     </div>
                 </div>
                 <div className="flex flex-col w-5/6  items-center  ">
+               
                 <h1 className="text-[4rem] text-deepblue font-bold mt-[4rem] ">
                     All Projects
                 </h1>
                     <div className="grid grid-cols-2 gap-x-[4rem]">
                         
-                        {[...Array(8)].map((project,i) => (<CreateProjects key={i} />))
+                      
+                        {project.map((project) => (<CreateProjects key={project.id} project={project} projectId={project.id} />))
+                        
                         }
                         
                     </div>
